@@ -5,11 +5,11 @@ This repository contains the minimal set of code required to create your own cus
 To create your own Dash component:
 1. Fork this repo
 2. Find-and-replace:
-    1. `my_dash_component` with your component library name.
-    2. `my-dash-component` with your component library name.
-    3. `my-name` with your name and `my-email` with your email address
+    1. `table_custom` with your component library name.
+    2. `table-custom` with your component library name.
+    3. `Craig Handley` with your name and `handley.craig@gmail.com` with your email address
     4. `my-license` with your license (e.g. `MIT`)
-    5. Rename the folder `my_dash_component/` with your component library name
+    5. Rename the folder `table_custom/` with your component library name
 3. Install the dependencies:
 ```
 npm install
@@ -43,7 +43,7 @@ npm run start
 
     3. Test your tarball by copying it into a new environment and installing it locally:
     ```
-    pip install my_dash_component-0.0.1.tar.gz
+    pip install table_custom-0.0.1.tar.gz
     ```
 
     4. If it works, then you can publish the component to NPM and PyPI:
@@ -56,7 +56,7 @@ npm run start
 8. Share your component with the community! https://community.plot.ly/c/dash
 
 # More details
-- Include CSS files in your distribution folder (`my_dash_component`) and reference them in `MANIFEST.in`
+- Include CSS files in your distribution folder (`table_custom`) and reference them in `MANIFEST.in`
 - The `tests` folder contains a sample integration test. This will run a sample Dash app in a browser. Run this with:
     ```
     python -m tests.test_render

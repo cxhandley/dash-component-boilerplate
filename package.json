@@ -1,17 +1,17 @@
 {
-  "name": "my-dash-component",
+  "name": "table-custom",
   "version": "0.0.1",
-  "description": "my-dash-component",
+  "description": "table-custom",
   "main": "build/index.js",
   "scripts": {
     "start": "webpack-serve ./webpack.serve.config.js --open",
     "build:js-dev": "webpack --mode development",
     "build:js": "webpack --mode production",
-    "build:py": "node ./extract-meta src/lib/components > my_dash_component/metadata.json && copyfiles package.json my_dash_component && python -c \"import dash; dash.development.component_loader.generate_classes('my_dash_component', 'my_dash_component/metadata.json')\"",
+    "build:py": "node ./extract-meta src/lib/components > table_custom/metadata.json && copyfiles package.json table_custom && python -c \"import dash; dash.development.component_loader.generate_classes('table_custom', 'table_custom/metadata.json')\"",
     "build:all": "npm run build:js & npm run build:py",
     "build:all-dev": "npm run build:js-dev & npm run build:py"
   },
-  "author": "my-name my-email",
+  "author": "Craig Handley handley.craig@gmail.com",
   "license": "my-license",
   "dependencies": {
     "ramda": "^0.25.0",
