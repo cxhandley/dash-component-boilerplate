@@ -1,29 +1,166 @@
 {
-  "src/lib/components/ExampleComponent.react.js": {
-    "description": "ExampleComponent is an example component.\nIt takes a property, `label`, and\ndisplays it.\nIt renders an input with the property `value`\nwhich is editable by the user.",
-    "displayName": "ExampleComponent",
-    "methods": [],
+  "src/lib/components/TableComponent.react.js": {
+    "description": "",
+    "displayName": "TableComponent",
+    "methods": [
+      {
+        "name": "propsToState",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "props",
+            "type": null
+          },
+          {
+            "name": "prevProps",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "updateProps",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "obj",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "updatePage",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "currentPage",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "updateSorting",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "sortKey",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "updateColumns",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "columnKey",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "addFilter",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "newFilter",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "removeFilter",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "filterKey",
+            "type": null
+          }
+        ],
+        "returns": null
+      },
+      {
+        "name": "updateFilter",
+        "docblock": null,
+        "modifiers": [],
+        "params": [
+          {
+            "name": "{filter: filterKey, comparison, value}",
+            "type": null
+          }
+        ],
+        "returns": null
+      }
+    ],
     "props": {
       "id": {
         "type": {
           "name": "string"
         },
         "required": false,
-        "description": "The ID used to identify this compnent in Dash callbacks"
+        "description": "The ID used to identify this component in Dash callbacks"
       },
-      "label": {
+      "currentPage": {
         "type": {
-          "name": "string"
-        },
-        "required": true,
-        "description": "A label that will be printed when this component is rendered."
-      },
-      "value": {
-        "type": {
-          "name": "string"
+          "name": "number"
         },
         "required": false,
-        "description": "The value displayed in the input"
+        "description": ""
+      },
+      "dynamic": {
+        "type": {
+          "name": "custom",
+          "raw": "{\n  data: PropTypes.array,\n  currentPage: PropTypes.number,\n  totalCount: PropTypes.number\n}"
+        },
+        "required": false,
+        "description": ""
+      },
+      "perPage": {
+        "type": {
+          "name": "number"
+        },
+        "required": false,
+        "description": ""
+      },
+      "sortKeys": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "extraColumns": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "columns": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
+      },
+      "filters": {
+        "type": {
+          "name": "array"
+        },
+        "required": false,
+        "description": ""
       },
       "setProps": {
         "type": {

@@ -1,6 +1,7 @@
 /* eslint-disable import/prefer-default-export */
-import ExampleComponent from './components/ExampleComponent.react';
+import 'regenerator-runtime/runtime'
+import TableComponent from './components/TableComponent.react';
 
 export {
-    ExampleComponent
+    TableComponent
 };
