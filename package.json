@@ -1,6 +1,6 @@
 {
   "name": "dash-table-custom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "dash-table-custom",
   "main": "build/index.js",
   "scripts": {
