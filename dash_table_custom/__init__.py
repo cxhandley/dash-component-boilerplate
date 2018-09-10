@@ -33,7 +33,7 @@ _js_dist = [
     {
         'relative_package_path': 'bundle.js',
         'external_url': (
-            'https://unpkg.com/dash-table-custom'
+            'https://unpkg.com/dash-table-custom@{}'
             '/' + package_name + '/bundle.js'
         ).format(__version__),
         'namespace': package_name
@@ -44,7 +44,7 @@ _css_dist = [
     {
         'relative_package_path': 'dash_table_custom.css',
         'external_url': (
-            'https://unpkg.com/dash-table-custom'
+            'https://unpkg.com/dash-table-custom@{}'
             '/' + package_name + '/dash_table_custom.css'
         ).format(__version__),
         'namespace': package_name
