@@ -43,6 +43,9 @@ const FILTER_MAP = {
 }
 
 function format(n, sep, decimals) {
+    if (n == undefined) {
+      return '-'
+    }
     if (decimals == 0) {
       return n.toLocaleString().split(sep)[0]
     } else {
