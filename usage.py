@@ -1,6 +1,8 @@
 import table_custom
 
 import json
+from decimal import Decimal
+
 import dash
 from dash.dependencies import Input, Output, State
 import dash_html_components as html
@@ -22,6 +24,7 @@ cache = Cache(app.server, config={
 DF_GAPMINDER = pd.read_csv(
     'https://raw.githubusercontent.com/plotly/datasets/master/gapminderDataFiveYear.csv'
 )
+DF_GAPMINDER['country_link'] = DF_GAPMINDER.apply(lambda row: f'https://en.wikipedia.org/wiki/{row["country"]}', axis=1)
 
 PAGE_SIZE = 20
 
@@ -33,7 +36,12 @@ COLUMNS = [
     {
         'dataKey': 'country',
         'header': 'Country',
-        'sortKey': 'country'
+        'sortKey': 'country',
+        'item': 'linkRenderer',
+        'item_props': {
+            'hrefKey': 'country_link',
+            'style': {}
+        }
     },
     {
         'dataKey': 'year',
@@ -44,7 +52,13 @@ COLUMNS = [
         'dataKey': 'pop',
         'header': 'Population',
         'sortKey': 'pop',
-        'item': 'number0Renderer'
+        'item': 'numberRenderer',
+        'item_props': {
+            'decimal_points': 0,
+            'style': {
+                'float': 'right'
+            }
+        }
     },
     {
         'dataKey': 'continent',
@@ -55,13 +69,25 @@ COLUMNS = [
         'dataKey': 'lifeExp',
         'header': 'Life Expectancy',
         'sortKey': 'lifeExp',
-        'item': 'number2Renderer'
+        'item': 'numberRenderer',
+        'item_props': {
+            'decimal_points': 2,
+            'style': {
+                'float': 'right'
+            }
+        }
     },
     {
         'dataKey': 'gdpPercap',
         'header': 'GDP per Capita',
         'sortKey': 'gdpPercap',
-        'item': 'number2Renderer'
+        'item': 'numberRenderer',
+        'item_props': {
+            'decimal_points': 2,
+            'style': {
+                'float': 'right'
+            }
+        }
     },
 ]
 
@@ -72,6 +98,29 @@ FILTERS = [
         'name': 'Country',
         'active': False,
         'options': [{'label': o, 'value': o} for o in list(DF_GAPMINDER.country.unique())],
+        'props': {
+            'updateDelay': 5,
+        }
+    },
+    {
+        'Renderer': 'ChoiceFilter',
+        'filterKey': 'year',
+        'name': 'Year',
+        'active': False,
+        'options': [{'label': o, 'value': o} for o in list(DF_GAPMINDER.year.unique())],
+        'props': {
+            'updateDelay': 5,
+        }
+    },
+    {
+        'Renderer': 'NumberSliderFilter',
+        'filterKey': 'pop',
+        'name': 'Population (Billion)',
+        'active': False,
+        'precision': 2,
+        'step': 0.01,
+        'min': 0,
+        'max': 2,
         'props': {
             'updateDelay': 5,
         }
@@ -111,18 +160,39 @@ style = {
 @app.callback(
     Output('table', 'dynamic'),
     [Input('table', 'currentPage'),
-    Input('table', 'filters')])
+    Input('table', 'filters'),
+    Input('table', 'sortKeys')])
 @cache.memoize(timeout=5)
-def update_data_store(currentPage, filters):
+def update_data_store(currentPage, filters, sortKeys):
     ROWS = DF_GAPMINDER
 
     for f in filters:
         if f['active'] and 'value' in f:
             if f['value'] and f['comparison']:
-                if f['comparison'] == 'is':
-                    ROWS = ROWS[ROWS[f['filterKey']].isin([c['value'] for c in f['value']])]
-                else:
-                    ROWS = ROWS[~ROWS[f['filterKey']].isin([c['value'] for c in f['value']])]
+                if f['Renderer'] == 'MultiChoiceFilter':
+                    if f['comparison'] == 'is':
+                        ROWS = ROWS[ROWS[f['filterKey']].isin([c['value'] for c in f['value']])]
+                    else:
+                        ROWS = ROWS[~ROWS[f['filterKey']].isin([c['value'] for c in f['value']])]
+                elif f['Renderer'] == 'ChoiceFilter':
+                    if f['comparison'] == 'is':
+                        ROWS = ROWS[ROWS[f['filterKey']] == f['value']['value']]
+                    else:
+                        ROWS = ROWS[ROWS[f['filterKey']] != f['value']['value']]
+                elif f['Renderer'] == 'NumberSliderFilter':
+                    if f['comparison'] == 'exact':
+                        ROWS = ROWS[ROWS.apply(lambda x: round(Decimal(str(x[f['filterKey']]/1e9)), 2) == round(Decimal(f['value']), 2), axis=1)]
+                    elif f['comparison'] == 'gt':
+                        ROWS = ROWS[ROWS.apply(lambda x: round(Decimal(str(x[f['filterKey']]/1e9)), 2) > round(Decimal(f['value']), 2), axis=1)]
+                    elif f['comparison'] == 'gte':
+                        ROWS = ROWS[ROWS.apply(lambda x: round(Decimal(str(x[f['filterKey']]/1e9)), 2) >= round(Decimal(f['value']), 2), axis=1)]
+                    elif f['comparison'] == 'lt':
+                        ROWS = ROWS[ROWS.apply(lambda x: round(Decimal(str(x[f['filterKey']]/1e9)), 2) < round(Decimal(f['value']), 2), axis=1)]
+                    elif f['comparison'] == 'lte':
+                        ROWS = ROWS[ROWS.apply(lambda x: round(Decimal(str(x[f['filterKey']]/1e9)), 2) <= round(Decimal(f['value']), 2), axis=1)]
+
+    if sortKeys:
+        ROWS = ROWS.sort_values(by=[sortKeys[0]['sortKey']], ascending=sortKeys[0]['value'])
 
     totalCount = len(ROWS)
     start = (currentPage - 1) * PAGE_SIZE

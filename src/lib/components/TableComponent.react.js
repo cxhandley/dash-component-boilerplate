@@ -54,22 +54,17 @@ function format(n, sep, decimals) {
     }
 }
 
-const number0Renderer = ({row: {id}, value}) => {
-  return (<div key={`number0-${id}`} style={{'float': 'right'}}>{format(value, '.', 0)}</div>)
+const numberRenderer = ({row: {id}, column: {dataKey, item_props: {decimal_points, style}}, value}) => {
+  return (<div key={`${dataKey}-${id}`} style={style}>{format(value, '.', decimal_points)}</div>)
 }
 
-const number1Renderer = ({row: {id}, value}) => {
-  return (<div key={`number1-${id}`} style={{'float': 'right'}}>{format(value, '.', 1)}</div>)
-}
-
-const number2Renderer = ({row: {id}, value}) => {
-  return (<div key={`number2-${id}`} style={{'float': 'right'}}>{format(value, '.', 2)}</div>)
+const linkRenderer = ({row, column: {dataKey, item_props: {hrefKey, style}}}) => {
+  return (<a key={`${dataKey}-${row["id"]}`} style={style} href={row[hrefKey]}>{row[dataKey]}</a>)
 }
 
 const RENDERER_MAP = {
-  'number0Renderer': number0Renderer,
-  'number1Renderer': number1Renderer,
-  'number2Renderer': number2Renderer
+  'numberRenderer': numberRenderer,
+  'linkRenderer': linkRenderer
 }
 
 class TableComponent extends Component {
