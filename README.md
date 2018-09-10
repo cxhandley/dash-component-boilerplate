@@ -6,7 +6,7 @@ To create your own Dash component:
 1. Fork this repo
 2. Find-and-replace:
     1. `dash_table_custom` with your component library name.
-    2. `table-custom` with your component library name.
+    2. `dash-table-custom` with your component library name.
     3. `Craig Handley` with your name and `handley.craig@gmail.com` with your email address
     4. `my-license` with your license (e.g. `MIT`)
     5. Rename the folder `dash_table_custom/` with your component library name

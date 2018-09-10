@@ -1,7 +1,7 @@
 {
-  "name": "table-custom",
+  "name": "dash-table-custom",
   "version": "0.0.1",
-  "description": "table-custom",
+  "description": "dash-table-custom",
   "main": "build/index.js",
   "scripts": {
     "start": "webpack-serve ./webpack.serve.config.js --open",
