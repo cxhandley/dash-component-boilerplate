@@ -1,4 +1,4 @@
-import table_custom
+import dash_table_custom
 
 import json
 from decimal import Decimal
@@ -137,7 +137,7 @@ dynamic = {
 app.layout = html.Div([
     html.H1('Example'),
     html.Div([
-        table_custom.TableComponent(
+        dash_table_custom.TableComponent(
             id='table',
             currentPage=1,
             perPage=PAGE_SIZE,

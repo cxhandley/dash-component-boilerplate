@@ -31,7 +31,7 @@ venv
 *.pyc
 
 # builds
-table_custom.egg-info
+dash_table_custom.egg-info
 dist
 *__pycache__*
 __pycache__/

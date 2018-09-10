@@ -1,4 +1,4 @@
-include table_custom/bundle.js
-include table_custom/metadata.json
-include table_custom/package.json
+include dash_table_custom/bundle.js
+include dash_table_custom/metadata.json
+include dash_table_custom/package.json
 include README.md

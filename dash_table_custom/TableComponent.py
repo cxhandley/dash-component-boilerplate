@@ -22,7 +22,7 @@ Available events: """
     def __init__(self, id=Component.UNDEFINED, currentPage=Component.UNDEFINED, dynamic=Component.UNDEFINED, perPage=Component.UNDEFINED, sortKeys=Component.UNDEFINED, extraColumns=Component.UNDEFINED, columns=Component.UNDEFINED, filters=Component.UNDEFINED, **kwargs):
         self._prop_names = ['id', 'currentPage', 'dynamic', 'perPage', 'sortKeys', 'extraColumns', 'columns', 'filters']
         self._type = 'TableComponent'
-        self._namespace = 'table_custom'
+        self._namespace = 'dash_table_custom'
         self._valid_wildcard_attributes =            []
         self.available_events = []
         self.available_properties = ['id', 'currentPage', 'dynamic', 'perPage', 'sortKeys', 'extraColumns', 'columns', 'filters']
