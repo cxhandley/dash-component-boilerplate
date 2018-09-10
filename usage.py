@@ -12,6 +12,7 @@ from flask_caching import Cache
 app = dash.Dash('')
 
 app.scripts.config.serve_locally = True
+app.css.config.serve_locally = True
 app.css.append_css({'external_url': 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'})
 
 cache = Cache(app.server, config={

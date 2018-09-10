@@ -1,4 +1,5 @@
 include dash_table_custom/bundle.js
 include dash_table_custom/metadata.json
 include dash_table_custom/package.json
+include dash_table_custom/dash_table_custom.css
 include README.md

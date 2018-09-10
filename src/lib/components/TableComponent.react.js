@@ -17,8 +17,6 @@ import {
   TextContainsFilter,
 } from 'react-object-list/filters'
 
-import './TableComponent.css'
-
 const MUTABLE_PROPS = [
   'dynamic',
   'columns',
