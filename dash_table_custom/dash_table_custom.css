@@ -135,12 +135,12 @@ input[type=range]:focus::-ms-fill-upper {
 .objectlist-input__container > input,
 .objectlist-input {
   font-family: sans-serif;
-  height: 24px;
+  height: 24px !important;
   font-size: 1em;
   border: 1px solid #cccccc;
   border-radius: 4px;
   padding: 5px;
-  box-sizing: content-box;
+  box-sizing: content-box !important;
 }
 
 .objectlist-input__container > input:placeholder,
