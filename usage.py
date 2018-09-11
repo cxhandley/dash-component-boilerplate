@@ -7,18 +7,17 @@ import dash
 from dash.dependencies import Input, Output, State
 import dash_html_components as html
 import pandas as pd
-from flask_caching import Cache
 
-app = dash.Dash('')
+external_stylesheets = [
+    'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+    'https://codepen.io/chriddyp/pen/bWLwgP.css'
+]
+
+app = dash.Dash('',
+    external_stylesheets=external_stylesheets)
 
 app.scripts.config.serve_locally = True
 app.css.config.serve_locally = True
-app.css.append_css({'external_url': 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'})
-
-cache = Cache(app.server, config={
-    'CACHE_TYPE': 'filesystem',
-    'CACHE_DIR': 'cache-directory'
-})
 
 
 
@@ -163,7 +162,6 @@ style = {
     [Input('table', 'currentPage'),
     Input('table', 'filters'),
     Input('table', 'sortKeys')])
-@cache.memoize(timeout=5)
 def update_data_store(currentPage, filters, sortKeys):
     ROWS = DF_GAPMINDER
 

@@ -132,6 +132,10 @@ input[type=range]:focus::-ms-fill-upper {
   position: relative;
 }
 
+.objectlist-row input {
+  height: 24px !important;
+}
+
 .objectlist-input__container > input,
 .objectlist-input {
   font-family: sans-serif;
@@ -518,7 +522,7 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 .objectlist-input__number-slider--number {
-  width: 4rem;
+  width: 5rem;
   margin-right: 0.2rem;
 }
 
