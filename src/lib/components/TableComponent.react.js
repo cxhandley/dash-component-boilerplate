@@ -55,6 +55,10 @@ function format(n, sep, decimals) {
     }
 }
 
+const spanRenderer = ({row: {id}, column: {dataKey:, itep_props: {style}}, value}) => {
+  return (<span key={`${dataKey}-${id}`} style={style}>{value}</span>)
+}
+
 const numberRenderer = ({row: {id}, column: {dataKey, item_props: {decimal_points, style}}, value}) => {
   return (<div key={`${dataKey}-${id}`} style={style}>{format(value, '.', decimal_points)}</div>)
 }
@@ -64,6 +68,7 @@ const linkRenderer = ({row, column: {dataKey, item_props: {hrefKey, style}}}) =>
 }
 
 const RENDERER_MAP = {
+  'spanRenderer': spanRenderer,
   'numberRenderer': numberRenderer,
   'linkRenderer': linkRenderer
 }
