@@ -55,7 +55,7 @@ function format(n, sep, decimals) {
     }
 }
 
-const spanRenderer = ({row: {id}, column: {dataKey:, itep_props: {style}}, value}) => {
+const spanRenderer = ({row: {id}, column: {dataKey, item_props: {style}}, value}) => {
   return (<span key={`${dataKey}-${id}`} style={style}>{value}</span>)
 }
 
